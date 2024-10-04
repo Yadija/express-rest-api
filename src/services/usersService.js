@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { nanoid } from "nanoid";
 // exceptions
+import AuthenticationError from "../exceptions/AuthenticationError.js";
 import InvariantError from "../exceptions/InvariantError.js";
 import NotFoundError from "../exceptions/NotFoundError.js";
 // utils
@@ -43,4 +44,20 @@ const getUserById = (userId) => {
   return { id, username, fullname };
 };
 
-export default { addUser, getUserById, verifyNewUsername };
+const verifyUserCredential = (username, password) => {
+  const user = users.find((user) => user.username === username);
+
+  if (!user || !bcrypt.compareSync(password, user.password)) {
+    throw new AuthenticationError("username or password incorrect");
+  }
+
+  const { id, fullname } = user;
+  return { id, username, fullname };
+};
+
+export default {
+  addUser,
+  getUserById,
+  verifyNewUsername,
+  verifyUserCredential,
+};
