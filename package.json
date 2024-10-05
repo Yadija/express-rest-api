@@ -2,13 +2,22 @@
   "name": "express-rest-api",
   "version": "1.0.0",
   "description": "Express REST API is a simple REST API with Express framework for Node.js, use memory to store data.",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "jest -i"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!nanoid/)"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -23,12 +32,16 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.7",
     "@eslint/js": "^9.11.1",
+    "babel-jest": "^29.7.0",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.10.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
   }
 }
