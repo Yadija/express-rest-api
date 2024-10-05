@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 // utils
 import users from "../src/utils/users.js";
+import tokens from "../src/utils/authentications.js";
 
 export const createTestUser = () => {
   const user = {
@@ -18,4 +19,8 @@ export const getTestUserById = () =>
 
 export const removeAllTestUsers = () => {
   users.length = 0;
+};
+
+export const removeAllTestAuthentication = () => {
+  tokens.length = 0;
 };

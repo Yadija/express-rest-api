@@ -9,7 +9,7 @@
     "start:dev": "nodemon src/app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest -i"
+    "test": "jest -i --setupFiles dotenv/config"
   },
   "jest": {
     "transform": {
