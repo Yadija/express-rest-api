@@ -1,0 +1,12 @@
+{
+  "name": "express-rest-api",
+  "version": "1.0.0",
+  "description": "Express REST API is a simple REST API with Express framework for Node.js, use postgres to store data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
