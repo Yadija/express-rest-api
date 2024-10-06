@@ -1,10 +1,9 @@
-import express from "express";
 import "dotenv/config";
+import { web } from "./application/web.js";
+import { logger } from "./application/logging.js";
 
 const port = process.env.PORT || 3000;
 
-const app = express();
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+web.listen(port, () => {
+  logger.info(`Server running on port ${port}`);
 });
