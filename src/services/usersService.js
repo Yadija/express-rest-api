@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { nanoid } from "nanoid";
 // exceptions
+import AuthenticationError from "../exceptions/AuthenticationError.js";
 import InvariantError from "../exceptions/InvariantError.js";
 import NotFoundError from "../exceptions/NotFoundError.js";
 
@@ -53,6 +54,28 @@ class UsersService {
     }
 
     return rows[0];
+  }
+
+  async verifyUserCredential(username, password) {
+    const query = {
+      text: "SELECT id, username, password, fullname FROM users WHERE username = $1",
+      values: [username],
+    };
+
+    const { rows, rowCount } = await this._pool.query(query);
+
+    if (!rowCount) {
+      throw new AuthenticationError("username or password incorrect");
+    }
+
+    const { id, password: hashedPassword, fullname } = rows[0];
+
+    const match = await bcrypt.compare(password, hashedPassword);
+    if (!match) {
+      throw new AuthenticationError("username or password incorrect");
+    }
+
+    return { id, username, fullname };
   }
 }
 
