@@ -8,6 +8,7 @@
     "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
     "migrate": "node-pg-migrate",
+    "migrate:test": "node-pg-migrate --envPath .env.test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest -i --setupFiles dotenv/config"
