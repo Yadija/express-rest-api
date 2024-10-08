@@ -32,10 +32,10 @@ const getThreadsController = (request, response, next) => {
   try {
     const threads = threadsService.getAllThreads();
 
-    logger.info("Get threads successfully");
+    logger.info("get threads successfully");
     response.status(200).json({
       status: "success",
-      message: "Get threads successfully",
+      message: "get threads successfully",
       timestamp: new Date().toISOString(),
       data: {
         threads,
@@ -51,10 +51,10 @@ const getThreadByIdController = (request, response, next) => {
     const { threadId } = request.params;
     const thread = threadsService.getThreadById(threadId);
 
-    logger.info(`Get thread by id ${threadId} successfully`);
+    logger.info(`get thread by id ${threadId} successfully`);
     response.status(200).json({
       status: "success",
-      message: "Get thread by id successfully",
+      message: "get thread by id successfully",
       timestamp: new Date().toISOString(),
       data: {
         thread,
@@ -77,6 +77,7 @@ const putThreadByIdController = (request, response, next) => {
     threadsService.verifyThreadOwner(threadId, owner);
     const thread = threadsService.editThreadById(threadId, content);
 
+    logger.info(`thread updated with id ${threadId} by ${owner}`);
     response.status(200).json({
       status: "success",
       message: "thread updated successfully",
@@ -99,6 +100,7 @@ const deleteThreadByIdController = (request, response, next) => {
     threadsService.verifyThreadOwner(threadId, owner);
     threadsService.deleteThreadById(threadId);
 
+    logger.info(`thread deleted with id ${threadId} by ${owner}`);
     response.status(200).json({
       status: "success",
       message: "thread deleted successfully",

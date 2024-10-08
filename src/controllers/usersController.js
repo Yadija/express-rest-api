@@ -11,11 +11,11 @@ const postUserController = (request, response, next) => {
     const user = usersService.addUser(payload);
 
     logger.info(
-      `User ${payload.username} with id ${user.id} created successfully`,
+      `user ${payload.username} with id ${user.id} created successfully`,
     );
     response.status(201).json({
       status: "success",
-      message: "User created successfully",
+      message: "user created successfully",
       timestamp: new Date().toISOString(),
       data: {
         user,
@@ -32,10 +32,10 @@ const getUsersByIdController = (request, response, next) => {
 
     const user = usersService.getUserById(userId);
 
-    logger.info(`Get user by id ${userId} successfully`);
+    logger.info(`get user by id ${userId} successfully`);
     response.status(200).json({
       status: "success",
-      message: "Get user by id successfully",
+      message: "get user by id successfully",
       timestamp: new Date().toISOString(),
       data: {
         user,
