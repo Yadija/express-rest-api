@@ -34,3 +34,10 @@ export const removeAllTestUsers = async () => {
   };
   await pool.query(query);
 };
+
+export const removeAllTestAuthentication = async () => {
+  const query = {
+    text: "DELETE FROM authentications WHERE 1=1",
+  };
+  await pool.query(query);
+};
