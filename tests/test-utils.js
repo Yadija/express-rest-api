@@ -9,7 +9,7 @@ export const createTestUser = () => {
     id: "user-123",
     username: "johndoe",
     fullname: "John Doe",
-    password: bcrypt.hashSync("secret", 10),
+    password: bcrypt.hashSync("secretpassword", 10),
   };
 
   users.push(user);
@@ -20,7 +20,7 @@ export const createAnotherTestUser = () => {
     id: "user-456",
     username: "janedoe",
     fullname: "Jane Doe",
-    password: bcrypt.hashSync("secret", 10),
+    password: bcrypt.hashSync("secretpassword", 10),
   };
 
   users.push(user);

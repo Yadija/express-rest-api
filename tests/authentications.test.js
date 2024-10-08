@@ -19,7 +19,7 @@ describe("POST /auth/login", () => {
   it("should response 201 and create new token", async () => {
     const result = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     expect(result.status).toBe(201);
@@ -80,7 +80,7 @@ describe("PUT /auth/refresh", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web).put("/auth/refresh").send({
@@ -131,7 +131,7 @@ describe("DELETE /authentications", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web).delete("/auth/logout").send({

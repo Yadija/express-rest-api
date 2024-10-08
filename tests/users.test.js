@@ -14,7 +14,7 @@ describe("POST /users", () => {
   it("should response 201 and create new user", async () => {
     const result = await supertest(web).post("/users").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
       fullname: "John Doe",
     });
 
@@ -46,7 +46,7 @@ describe("POST /users", () => {
   it("should response 400 and reject if username already registered", async () => {
     let result = await supertest(web).post("/users").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
       fullname: "John Doe",
     });
 

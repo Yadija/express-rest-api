@@ -30,7 +30,7 @@ describe("POST /threads", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
@@ -60,7 +60,7 @@ describe("POST /threads", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
@@ -186,7 +186,7 @@ describe("PUT /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     // make thread
@@ -230,7 +230,7 @@ describe("PUT /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     // make thread
@@ -282,7 +282,7 @@ describe("PUT /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "janedoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
@@ -304,7 +304,7 @@ describe("PUT /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
@@ -342,7 +342,7 @@ describe("DELETE /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     // make thread
@@ -397,7 +397,7 @@ describe("DELETE /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "janedoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
@@ -418,7 +418,7 @@ describe("DELETE /threads/:threadId", () => {
       },
     } = await supertest(web).post("/auth/login").send({
       username: "johndoe",
-      password: "secret",
+      password: "secretpassword",
     });
 
     const result = await supertest(web)
