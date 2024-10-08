@@ -19,7 +19,7 @@ This is a simple REST API with Express framework for Node.js, use memory to stor
 
    - Copy and paste the contents of the `.env.example` file into your `.env` file.
 
-Save your changes.
+   - Save your changes.
 
 ## 🔭Running App
   ```bash
