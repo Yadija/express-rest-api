@@ -13,11 +13,11 @@ import {
 } from "./test-utils.js";
 
 describe("POST /threads", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestThreads();
     removeAllTestAuthentication();
     removeAllTestUsers();
@@ -91,14 +91,14 @@ describe("POST /threads", () => {
 });
 
 describe("GET /threads", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
     createAnotherTestUser();
     createManyTestThreads();
     createAnotherManyTestThreads();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestThreads();
     removeAllTestAuthentication();
     removeAllTestUsers();
@@ -127,12 +127,12 @@ describe("GET /threads", () => {
 });
 
 describe("GET /threads/:threadId", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
     createTestThread();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestThreads();
     removeAllTestAuthentication();
     removeAllTestUsers();
@@ -167,13 +167,13 @@ describe("GET /threads/:threadId", () => {
 });
 
 describe("PUT /threads/:threadId", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
     createAnotherTestUser();
     createTestThread();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestThreads();
     removeAllTestAuthentication();
     removeAllTestUsers();
@@ -323,13 +323,13 @@ describe("PUT /threads/:threadId", () => {
 });
 
 describe("DELETE /threads/:threadId", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
     createAnotherTestUser();
     createTestThread();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestThreads();
     removeAllTestAuthentication();
     removeAllTestUsers();

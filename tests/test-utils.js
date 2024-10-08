@@ -71,7 +71,7 @@ export const createTestThread = () => {
   });
 };
 
-export const getTestThread = async () => {
+export const getTestThread = () => {
   return threads.find((thread) => thread.id === "thread-123");
 };
 

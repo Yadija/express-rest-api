@@ -7,11 +7,11 @@ import {
 } from "./test-utils.js";
 
 describe("POST /auth/login", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestAuthentication();
     removeAllTestUsers();
   });
@@ -64,11 +64,11 @@ describe("POST /auth/login", () => {
 });
 
 describe("PUT /auth/refresh", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestAuthentication();
     removeAllTestUsers();
   });
@@ -115,11 +115,11 @@ describe("PUT /auth/refresh", () => {
 });
 
 describe("DELETE /authentications", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     createTestUser();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     removeAllTestAuthentication();
     removeAllTestUsers();
   });
