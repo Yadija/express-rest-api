@@ -114,7 +114,7 @@ describe("PUT /auth/refresh", () => {
   });
 });
 
-describe("DELETE /authentications", () => {
+describe("DELETE /auth/logout", () => {
   beforeEach(async () => {
     await createTestUser();
   });
