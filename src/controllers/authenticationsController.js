@@ -21,7 +21,7 @@ const postAuthenticationController = (request, response, next) => {
     authenticationsService.addRefreshToken(tokens.refreshToken);
 
     logger.info(`login success with username ${username}`);
-    response.status(201).json({
+    response.status(200).json({
       status: "success",
       message: "login success",
       timestamp: new Date().toISOString(),

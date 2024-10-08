@@ -16,13 +16,13 @@ describe("POST /auth/login", () => {
     removeAllTestUsers();
   });
 
-  it("should response 201 and create new token", async () => {
+  it("should response 200 and create new tokens", async () => {
     const result = await supertest(web).post("/auth/login").send({
       username: "johndoe",
       password: "secretpassword",
     });
 
-    expect(result.status).toBe(201);
+    expect(result.status).toBe(200);
     expect(result.body.status).toBe("success");
     expect(result.body.message).toBeDefined();
     expect(result.body.timestamp).toBeDefined();
@@ -73,7 +73,7 @@ describe("PUT /auth/refresh", () => {
     removeAllTestUsers();
   });
 
-  it("should response 200 and create new access token", async () => {
+  it("should response 200 and create new tokens", async () => {
     const {
       body: {
         data: { refreshToken },
@@ -114,7 +114,7 @@ describe("PUT /auth/refresh", () => {
   });
 });
 
-describe("DELETE /authentications", () => {
+describe("DELETE /auth/logout", () => {
   beforeEach(() => {
     createTestUser();
   });
