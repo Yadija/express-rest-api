@@ -11,7 +11,7 @@ class ThreadsService {
     this._pool = pool;
   }
 
-  async addthread(content, owner) {
+  async addThread(content, owner) {
     const id = `thread-${nanoid(15)}`;
 
     const query = {

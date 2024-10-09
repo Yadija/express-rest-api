@@ -11,7 +11,7 @@ class ThreadsController {
       const { content } = payload;
       const { credentialId: owner } = request;
 
-      const thread = await this._service.addthread(content, owner);
+      const thread = await this._service.addThread(content, owner);
 
       this._logger.info(`thread created with id ${thread.id} by ${owner}`);
       response.status(201).json({
