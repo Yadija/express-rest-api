@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 // exceptions
-import InvariantError from "../../../express-rest-api/src/exceptions/InvariantError.js";
+import InvariantError from "../exceptions/InvariantError.js";
 
 const tokenManager = {
   generateTokens: (payload) => {
