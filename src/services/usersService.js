@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 // application
 import { prismaClient } from "../application/database.js";
 // exceptions
+import AuthenticationError from "../exceptions/AuthenticationError.js";
 import InvariantError from "../exceptions/InvariantError.js";
 import NotFoundError from "../exceptions/NotFoundError.js";
 
@@ -54,6 +55,30 @@ class UsersService {
     }
 
     return user;
+  }
+
+  async verifyUserCredential(username, password) {
+    const user = await prismaClient.user.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        password: true,
+        fullname: true,
+      },
+    });
+
+    if (!user) {
+      throw new AuthenticationError("username or password incorrect");
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      throw new AuthenticationError("username or password incorrect");
+    }
+
+    const { id, fullname } = user;
+    return { id, username, fullname };
   }
 }
 
