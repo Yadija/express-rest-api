@@ -13,7 +13,7 @@ const errorMiddleware = async (error, request, response, next) => {
   const message = isClientError ? error.message : "Internal Server Error";
 
   const errorResponse = {
-    status: isClientError ? "fail" : "error",
+    status: "fail",
     message: message,
     timestamp: new Date().toISOString(),
     path: request.originalUrl,
