@@ -5,7 +5,7 @@ import NotFoundError from "../exceptions/NotFoundError.js";
 // utils
 import threads from "../utils/threads.js";
 
-const addthread = (content, owner) => {
+const addThread = (content, owner) => {
   const id = `thread-${nanoid(15)}`;
 
   const createdAt = new Date().toISOString();
@@ -29,7 +29,7 @@ const getThreadById = (id) => {
   const thread = threads.find((thread) => thread.id === id);
 
   if (!thread) {
-    throw new NotFoundError("Cannot find thread");
+    throw new NotFoundError("cannot find thread");
   }
 
   return thread;
@@ -63,7 +63,7 @@ const deleteThreadById = (id) => {
 };
 
 export default {
-  addthread,
+  addThread,
   getAllThreads,
   getThreadById,
   editThreadById,

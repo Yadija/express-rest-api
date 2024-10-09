@@ -12,7 +12,7 @@ const postThreadController = (request, response, next) => {
     const { content } = payload;
     const { credentialId: owner } = request;
 
-    const thread = threadsService.addthread(content, owner);
+    const thread = threadsService.addThread(content, owner);
 
     logger.info(`thread created with id ${thread.id} by ${owner}`);
     response.status(201).json({

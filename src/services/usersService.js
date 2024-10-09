@@ -37,7 +37,7 @@ const getUserById = (userId) => {
   const index = users.findIndex((user) => user.id === userId);
 
   if (index === -1) {
-    throw new NotFoundError("Cannot find user");
+    throw new NotFoundError("cannot find user");
   }
 
   const { id, username, fullname } = users[index];
