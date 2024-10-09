@@ -14,11 +14,12 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  username String  @unique @db.VarChar(50)
-  password String  @db.Text
-  fullname String  @db.Text
+  id       String   @id @default(uuid())
+  username String   @unique @db.VarChar(50)
+  password String   @db.Text
+  fullname String   @db.Text
   Token    Token[]
+  Thread   Thread[]
 
   @@map("users")
 }
@@ -37,4 +38,15 @@ model Token {
 
 enum TokenType {
   REFRESH_TOKEN
+}
+
+model Thread {
+  id        String   @id @default(uuid())
+  content   String   @db.Text
+  owner     String   @db.VarChar(50)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user      User     @relation(fields: [owner], references: [id])
+
+  @@map("threads")
 }
