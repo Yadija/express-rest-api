@@ -1,0 +1,1013 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Express Rest API",
+    "description": "API from Express Rest API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "password",
+                  "fullname"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "minLength": 4,
+                    "maxLength": 50,
+                    "pattern": "^[a-zA-Z0-9]+$",
+                    "example": "johndoe"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "secretpassword"
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "example": "John Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Add User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "user created successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "user-id"
+                            },
+                            "username": {
+                              "type": "string",
+                              "example": "johndoe"
+                            },
+                            "fullname": {
+                              "type": "string",
+                              "example": "John Doe"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to add user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to add user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Get user by user id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "get user by id successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "user-id"
+                            },
+                            "username": {
+                              "type": "string",
+                              "example": "johndoe"
+                            },
+                            "fullname": {
+                              "type": "string",
+                              "example": "John Doe"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to get user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to get user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Authentications"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "johndoe"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "secretpassword"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "login success"
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "user-id"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "johndoe"
+                        },
+                        "fullname": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "accessToken": {
+                          "type": "string",
+                          "example": "random-access-token"
+                        },
+                        "refreshToken": {
+                          "type": "string",
+                          "example": "random-refresh-token"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Failed to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "put": {
+        "tags": ["Authentications"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "example": "random-refresh-token"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Renew token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "refresh token successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "user-id"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "johndoe"
+                        },
+                        "fullname": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "accessToken": {
+                          "type": "string",
+                          "example": "random-access-token"
+                        },
+                        "refreshToken": {
+                          "type": "string",
+                          "example": "random-refresh-token"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to renew token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to renew token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "delete": {
+        "tags": ["Authentications"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "example": "random-refresh-token"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "logout successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "nullable": true,
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to remove token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads": {
+      "post": {
+        "tags": ["Threads"],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "content"
+                ],
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Add Thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "thread created successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "thread": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "content": {
+                              "type": "string"
+                            },
+                            "owner": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to add thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Failed to add thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to add thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to add thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to add thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Threads"],
+        "responses": {
+          "200": {
+            "description": "View the list of threads that belong",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "get threads successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "threads": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "example": "thread-id"
+                              },
+                              "content": {
+                                "type": "string",
+                                "example": "content"
+                              },
+                              "owner": {
+                                "type": "string",
+                                "example": "user-id"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "example": "2020-01-01T00:00:00.000Z"
+                              },
+                              "updatedAt": {
+                                "type": "string",
+                                "example": "2020-01-01T00:00:00.000Z"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to get threads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}": {
+      "get": {
+        "tags": ["Threads"],
+        "responses": {
+          "200": {
+            "description": "Get thread by thread id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "get thread successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "thread": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "thread-id"
+                            },
+                            "content": {
+                              "type": "string",
+                              "example": "content"
+                            },
+                            "owner": {
+                              "type": "string",
+                              "example": "user-id"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "example": "2020-01-01T00:00:00.000Z"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "example": "2020-01-01T00:00:00.000Z"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to get thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to get thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "threadId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Threads"],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "content"
+                ],
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update Thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "thread updated successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "thread": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "thread-id"
+                            },
+                            "content": {
+                              "type": "string",
+                              "example": "content"
+                            },
+                            "owner": {
+                              "type": "string",
+                              "example": "user-id"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "example": "2020-01-01T00:00:00.000Z"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "example": "2020-01-01T00:00:00.000Z"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Failed to update thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to update thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to update thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "threadId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Threads"],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "thread deleted successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2020-01-01T00:00:00.000Z"
+                    },
+                    "data": {
+                      "type": "object",
+                      "nullable": true,
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Failed to delete thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to delete thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to delete thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response-Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response-Error": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "fail"
+          },
+          "message": {
+            "type": "string",
+            "example": "error message"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "path": {
+            "type": "string",
+            "example": "/path"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerToken": {
+        "description": "Authentication for Express Rest API",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
