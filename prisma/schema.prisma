@@ -14,10 +14,27 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  username String @unique @db.VarChar(50)
-  password String @db.Text
-  fullname String @db.Text
+  id       String  @id @default(uuid())
+  username String  @unique @db.VarChar(50)
+  password String  @db.Text
+  fullname String  @db.Text
+  Token    Token[]
 
   @@map("users")
+}
+
+model Token {
+  id        String    @id @default(uuid())
+  token     String    @db.Text
+  type      TokenType
+  userId    String    @map("user_id")
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now()) @map("created_at")
+  expiredIn DateTime  @map("expired_in")
+
+  @@map("tokens")
+}
+
+enum TokenType {
+  REFRESH_TOKEN
 }
