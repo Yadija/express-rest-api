@@ -28,3 +28,7 @@ export const getTestUserById = async () => {
 export const removeAllTestUsers = async () => {
   await prismaClient.user.deleteMany({});
 };
+
+export const removeAllTestAuthentication = async () => {
+  await prismaClient.token.deleteMany({});
+};
