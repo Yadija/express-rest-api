@@ -44,19 +44,19 @@ This is a simple REST API with Express framework for Node.js, use postgres to st
 
 ### Set Up Test Environment Variables
 
-- To run the tests with another database, just copy and paste the contents of the `.env.test` file into your `.env` file.
-- This an optional step.
+To run the test using a different database, you need to copy the contents of the `.env` file into the `.env.test` file.
 
+### Migrate Database
+
+Run the following command to migrate the database.
+
+  ```bash
+  npm run migrate:test
+  ```
+
+### Running Tests
 
 To run the tests, use the following command:
   ```bash
   npm test
-  ```
-
-### Migrate Database
-
-- Run the following command to migrate the database.
-
-  ```bash
-  npm run migrate:test
   ```
